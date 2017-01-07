@@ -4,7 +4,7 @@
 <html data-ng-app="chat">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>EChat</title>
 <style type="text/css">
 html {
 	height: 100%;

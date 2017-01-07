@@ -66,6 +66,16 @@ public class EUserController {
 		}
 	}
 	
+	@RequestMapping(value="/usersearch")
+	public void searchUsers(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		response.setContentType(CONTENT_TYPE);
+		String searchtext = request.getParameter("u");
+		Gson json = new Gson();
+		PrintWriter out = response.getWriter();
+		out.print(json.toJson(userRepository.searchAllMatchingUsers(searchtext)));
+	}
+	
 
 	@RequestMapping(value="/register", headers = "content-type=multipart/*", method=RequestMethod.POST)
 	public void createUserProfile(MultipartHttpServletRequest request, HttpServletResponse response) throws IOException {

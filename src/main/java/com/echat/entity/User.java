@@ -1,6 +1,7 @@
 package com.echat.entity;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.data.annotation.Id;
@@ -21,6 +22,14 @@ public class User implements Serializable{
 	private String country;
 	
 	private short age;
+	
+	private Date birthday;
+	
+	private String gender;
+	
+	private String language;
+	
+	private List<String> websites;
 	
 	private String password;
 	
@@ -155,4 +164,76 @@ public class User implements Serializable{
 	public void setFriendList(List<String> friendList) {
 		this.friendList = friendList;
 	}
+
+	/**
+	 * @return the birthday
+	 */
+	public Date getBirthday() {
+		return birthday;
+	}
+
+	/**
+	 * @param birthday the birthday to set
+	 */
+	public void setBirthday(Date birthday) {
+		this.birthday = birthday;
+	}
+
+	/**
+	 * @return the gender
+	 */
+	public String getGender() {
+		return gender;
+	}
+
+	/**
+	 * @param gender the gender to set
+	 */
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	/**
+	 * @return the language
+	 */
+	public String getLanguage() {
+		return language;
+	}
+
+	/**
+	 * @param language the language to set
+	 */
+	public void setLanguage(String language) {
+		this.language = language;
+	}
+
+	/**
+	 * @return the websites
+	 */
+	public List<String> getWebsites() {
+		return websites;
+	}
+
+	/**
+	 * @param websites the websites to set
+	 */
+	public void setWebsites(List<String> websites) {
+		this.websites = websites;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
+	public String toString() {
+		return "User [_id=" + _id + ", displayName=" + displayName + ", email="
+				+ email + ", country=" + country + ", age=" + age
+				+ ", birthday=" + birthday + ", gender=" + gender
+				+ ", language=" + language + ", websites=" + websites
+				+ ", password=" + password + ", profileImage=" + profileImage
+				+ ", blackListedProfiles=" + blackListedProfiles
+				+ ", friendList=" + friendList + "]";
+	}
+	
+	
 }
