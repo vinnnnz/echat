@@ -9,6 +9,7 @@
 html {
 	height: 100%;
 }
+
 * {
 	outline: none;
 }
@@ -28,7 +29,8 @@ html {
 }
 </style>
 <link rel="stylesheet" type="text/css"
-	href="./static/css/font-awesome.min.css">
+	href="./static/css/font-awesome.min.css?1">
+<link rel="stylesheet" type="text/css" href="./static/css/chat.css?1">
 <style type="text/css">
 </style>
 </head>
@@ -38,7 +40,8 @@ html {
 	<%@ include file="./layout/fragment.jsp"%>
 
 
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-<script src="./static/js/chat.js"></script>
+	<script
+		src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+	<script src="./static/js/chat.js"></script>
 </body>
 </html>

@@ -1,0 +1,36 @@
+@CHARSET "ISO-8859-1";
+.profile-wrapper {
+	
+	display: flex;
+}
+
+.profile-image {
+	
+	width: 200px; 
+	height: 200px;
+	margin-left: 20px;
+	margin-top: 20px;
+}
+
+.profile-info {
+	
+	margin-left: 100px;
+	margin-top: 20px;
+}
+
+.profile-data {
+	
+	font-family: Century Gothic;
+	display: inline-block;
+}
+
+.profile-display-name {
+	
+	text-transform: capitalize;
+	font-family: Century Gothic;
+}
+
+.profile-data-wrapper {
+	
+	margin-top: 10px;
+}

@@ -8,7 +8,7 @@ chatApp.directive("sidebar", function() {
 		
 		controller : function($scope, $http) {
 			
-			$scope.sh = false;
+			$scope.toggleProfile = false;
 			
 			$scope.$watch('search', function() {
 				
@@ -20,14 +20,21 @@ chatApp.directive("sidebar", function() {
 			});
 			
 			$scope.showProfile = function() {
-				if($scope.sh) {
+				if($scope.toggleProfile) {
 					
-					$scope.sh = false;
+					$scope.toggleProfile = false;
 				} else {
 					
-					$scope.sh = true;
+					$scope.toggleProfile = true;
 				}
 			};
+			
+			$scope.addAsContact = function(e) {
+				
+				$scope.addProfile = e.u;
+				
+				$scope.toggleAddProfile ? $scope.toggleAddProfile = false : $scope.toggleAddProfile = true;
+			}
 			
 			$http({
 				method : 'GET',
@@ -44,7 +51,7 @@ chatApp.directive("sidebar", function() {
 					"<div class='search-bar'>" +
 						"<input type='text' data-ng-model='search' ng-model-options='{ debounce: 800 }' placeholder='Search People'><span class='fa fa-search' style='height: 35px;line-height: 35px;'></span>" +
 				   "</div>"	+
-				   "<li ng-repeat='u in users' style='list-style:none; padding:10px;'><img src='data:image/png;base64,{{u.profileImage}}' style='width:32px; margin-right:10px; height:32px;border-radius:50%;vertical-align:middle;'>{{u.displayName}} <span style='display:none'>{{u._id}}</span></li>"
+				   "<li ng-repeat='u in users' data-ng-click='addAsContact(this)' style='list-style:none; padding:10px;'><img src='data:image/png;base64,{{u.profileImage}}' style='width:32px; margin-right:10px; height:32px;border-radius:50%;vertical-align:middle;'>{{u.displayName}} <span style='display:none'>{{u._id}}</span></li>"
 	};
 }). directive("profile", function() {
 	
@@ -54,23 +61,33 @@ chatApp.directive("sidebar", function() {
 			
 			require : "sidebar",
 			
-			template : "<div data-ng-show='sh' style='display: flex;'>" + 
-							"<img src='{{image}}' style='width:200px; height:200px;margin-left:20px;margin-top:20px;'>" +
-							"<div style='margin-left: 100px; margin-top:20px;'>" +
-								"<div style='text-transform: capitalize;font-family: Century Gothic;'>{{user.displayName}}</div>" +
-								"<div style='margin-top:50px;'>"  +
-								"<label>Account: </label><div style='font-family: Century Gothic;display:inline-block;'>{{user._id}}</div>" +
+			template : "<div class='profile-wrapper' data-ng-show='toggleProfile'>" + 
+							"<img src='{{image}}' class='profile-image'>" +
+							"<div class='profile-info'>" +
+								"<div class='profile-display-name'>{{user.displayName}}</div>" +
+								"<div class='profile-data-wrapper'>"  +
+								"<label>Account: </label><div class='profile-data'>{{user._id}}</div>" +
 								"</div>" +
-								"<div style='margin-top:10px;'>" +
-								"<label>Email: </label><div style='font-family: Century Gothic;display:inline-block;'>{{user.email}}</div>" +
+								"<div class='profile-data-wrapper'>" +
+								"<label>Email: </label><div class='profile-data'>{{user.email}}</div>" +
 								"</div>" +
-								"<div style='margin-top:10px;'>" +
-								"<label>Country: </label><div style='font-family: Century Gothic;display:inline-block;'>{{user.country}}</div>" +
+								"<div class='profile-data-wrapper'>" +
+								"<label>Country: </label><div class='profile-data'>{{user.country}}</div>" +
 								"</div>" +
-								"<div style='margin-top:10px;'>" +
-								"<label>Age: </label><div style='font-family: Century Gothic;display:inline-block;'>{{user.age}}</div>" +
+								"<div class='profile-data-wrapper'>" +
+								"<label>Age: </label><div  class='profile-data'>{{user.age}}</div>" +
 								"</div>" +
 							"</div>" +
 						"</div>"
+	};
+}).directive("aprofile", function() {
+	
+	return {
+		
+		restrict : "E",
+		
+		require : "sidebar",
+		
+		template : "<div data-ng-show='toggleAddProfile'>{{addProfile.displayName}}</div>"
 	};
 });
